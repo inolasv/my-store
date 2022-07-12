@@ -25,7 +25,6 @@ export class OrderService {
     }
 
     let hasKey = false;
-    let oldAmt = 0;
 
     for (let [key, value] of order.products) {
       if (typeof key === 'object' && key.id === product.id) {
@@ -54,7 +53,7 @@ export class OrderService {
     //   console.log(`Adding ${amt} to a NEW ${product.name}`)
     //   order.products.set(product, amt);
     // }
-    console.log(order)
+    // console.log(order)
   }
   
 }
