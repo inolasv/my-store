@@ -25,22 +25,36 @@ export class OrderService {
     }
 
     let hasKey = false;
+    let oldAmt = 0;
 
-    for (const [key, value] of order.products) {
+    for (let [key, value] of order.products) {
       if (typeof key === 'object' && key.id === product.id) {
+        console.log(`Adding ${amt} to already created ${product.name}`)
         hasKey = true;
+        order.products.set(key, value + amt);
         break;
       }
     }
-
-    if (hasKey) {
-      console.log(`Adding ${amt} to already created ${product.name}`)
-      let newAmt: number = order.products.get(product) as number + amt;
-      order.products.set(product, newAmt);
-    } else {
+    if (!hasKey) {
       console.log(`Adding ${amt} to a NEW ${product.name}`)
       order.products.set(product, amt);
     }
+
+    // if (hasKey) {
+    //   console.log(`Adding ${amt} to already created ${product.name}`)
+    //   // let oldAmt = order.products.get(product)
+    //   if (oldAmt == undefined) {
+    //     console.log("not a number buddy.")
+    //   } else {
+    //     let newAmt = oldAmt + amt;
+    //     order.products.set(product, newAmt as number);
+    //   }
+      
+    // } else {
+    //   console.log(`Adding ${amt} to a NEW ${product.name}`)
+    //   order.products.set(product, amt);
+    // }
     console.log(order)
   }
+  
 }
