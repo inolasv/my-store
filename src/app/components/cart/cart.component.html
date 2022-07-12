@@ -1,0 +1,16 @@
+
+<h2>Your Cart</h2>
+
+<div *ngIf="cartEmpty">
+        <p>your cart is empty :(</p>
+</div>
+
+
+<div *ngFor="let product of products"> 
+    <h3>{{ product.name }}</h3>
+    <img src="{{ product.url }}" alt="Image of {{ product.name }}" width="100px" [routerLink]="['/product-details', product.id]"/>
+    <p>${{ product.price }}</p>
+
+    <input type="number" value="{{ cartOrder.products.get(product) }}" id="amtFor{{ product.id }}">
+    
+</div>
