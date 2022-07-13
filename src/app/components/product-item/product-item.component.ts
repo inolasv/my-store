@@ -34,7 +34,7 @@ export class ProductItemComponent implements OnInit {
     // have a service that does this? or a order component?
     let inputNum = Number((<HTMLInputElement>document.getElementById(`amtFor${this.product.id}`)).value);
     this.orderService.addToOrder(1, this.product, inputNum);
-    alert(`Added ${inputNum} of ${this.product.name} to cart!`);
+    alert(`Added to cart!`);
   }
 
 }

@@ -10,25 +10,26 @@
     <h3>{{ product.name }}</h3>
     <img src="{{ product.url }}" alt="Image of {{ product.name }}" width="100px" [routerLink]="['/product-details', product.id]"/>
     <p>${{ product.price }}</p>
-
     <input type="number" value="{{ cartOrder.products.get(product) }}" id="amtFor{{ product.id }}" (change)="updateTotalPrice()">
+
+</div>
+
     <h2>Subtotal: ${{ this.subtotal }} </h2>
     <h2>Estimated Tax: ${{ this.tax }} </h2>
     <h2>Shipping: $5.00</h2>
     <h2>Total: ${{ this.total }}</h2>
-</div>
 
 
-<div>
+<div *ngIf="!cartEmpty">
     <h1>Check Out</h1>
-    <form>
+    <form #form="ngForm" (ngSubmit)="submitOrder()">
         <label>Name:</label> <br>
-        <input type="text" placeholder=""> <br>
+        <input type="text" name="name" required minlength="2" placeholder="" id="name" [(ngModel)]="this.cartOrder.name"> <br>
         <label>Shipping Address:</label> <br>
-        <input type="text" placeholder=""> <br>
+        <input type="text" name="address" required minlength="3" placeholder="" [(ngModel)]="address"> <br>
         <label>Credit Card Number</label> <br>
-        <input type="text" placeholder=""> <br>
+        <input type="text" name="creditcard" requried minlength="6" placeholder="" [(ngModel)]="ccn"> <br>
         <p>We will never share your info with anyone.</p> <br>
-        <input type="submit" value="Confirm and Place Order"> <br>
+        <input type="submit" [disabled]="form.invalid" value="Confirm and Place Order"> <br>
     </form>
 </div>

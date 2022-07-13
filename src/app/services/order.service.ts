@@ -19,7 +19,9 @@ export class OrderService {
     if(order == undefined) {
       this.orders.push({
         id: id,
-        products: new Map<Product, number>()
+        products: new Map<Product, number>(),
+        name: "",
+        totalCost: 0
       });
       order = this.orders.find(o => o.id==id) as Order;
     }
@@ -28,14 +30,14 @@ export class OrderService {
 
     for (let [key, value] of order.products) {
       if (typeof key === 'object' && key.id === product.id) {
-        console.log(`Adding ${amt} to already created ${product.name}`)
+        // console.log(`Adding ${amt} to already created ${product.name}`)
         hasKey = true;
         order.products.set(key, value + amt);
         break;
       }
     }
     if (!hasKey) {
-      console.log(`Adding ${amt} to a NEW ${product.name}`)
+      // console.log(`Adding ${amt} to a NEW ${product.name}`)
       order.products.set(product, amt);
     }
 
