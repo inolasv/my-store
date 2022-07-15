@@ -1,25 +1,40 @@
 
 
-<h1>{{ product.name }}</h1>
-<img src="{{ product.url }}" alt="Image of {{ product.name }}" width="100px"/>
-<p>{{ product.description }}</p>
+<div class="container">
+    
+    <div class="row">
 
-<p>${{ product.price }}</p>
+        <div class="col-2"></div>
 
+        <img src="{{ product.url }}" class="col-3" alt="Image of {{ product.name }}"/>
 
-<select id="amtFor{{ product.id }}">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-</select>
+        <div class="col-6">
 
-<br>
-<button (click)="addToCart()">Add to Cart</button>
-<br>
-<a routerLink="/">Back to All Products</a>
+            <h1>{{ product.name }}</h1>
+    
+            <p>{{ product.description }}</p>
+        
+            <p>${{ product.price }}</p>
+        
+            <div>
+                <select class="cart-mod" id="amtFor{{ product.id }}">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <br>
+
+                <button class="btn btn-primary btn-sm cart-mod" (click)="addToCart()">Add to Cart</button>
+            </div>
+
+            <a class="back-link" routerLink="/">← Back to All Products</a>
+
+        </div>
+    </div>
+</div>

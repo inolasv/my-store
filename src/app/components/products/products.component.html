@@ -2,4 +2,10 @@
 <!-- <h1>{{ title }}</h1> -->
 
 
-<app-product-item *ngFor="let product of product_list" [product]="product"></app-product-item>
+<div class="container">
+    <h1 class="title">Products</h1>
+    <div class="row">
+        <app-product-item *ngFor="let product of product_list" [product]="product" class="col-sm-4"></app-product-item>
+    </div>
+</div>
+

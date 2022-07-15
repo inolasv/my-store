@@ -1,8 +1,12 @@
 
 
-<h2>Success!</h2>
 
-<p>Thank you, {{ this.cartOrder.name }} </p>
-<p>Your order for ${{ this.cartOrder.totalCost }} has been confirmed! </p>
-<p>please allow 3-5 business days for shipping. For any inquiries, contact us!</p>
+<div class="container">
 
+    <h1 class="display-4">Success!</h1>
+
+    <h5 class="lead">Thank you, {{ this.cartOrder.name }}. </h5>
+    <h5 class="lead">Your order for <b>${{ this.cartOrder.totalCost }}</b> has been confirmed! </h5>
+    <h5 class="lead">Please allow 3-5 business days for shipping. For any inquiries, contact us!</h5>
+
+</div>

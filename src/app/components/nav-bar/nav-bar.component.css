@@ -1,0 +1,17 @@
+
+
+.navbar-brand {
+    font-size: xx-large;
+}
+
+.navbar {
+    padding: 1.5em;
+    background-color: #c6dcf2;
+}
+
+.nav-item  {
+    padding-left: 2em;
+    padding-right: 2em;
+    font-size: x-large;
+}
+

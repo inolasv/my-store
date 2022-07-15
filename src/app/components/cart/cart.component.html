@@ -1,35 +1,71 @@
 
-<h1>Your Cart</h1>
 
-<div *ngIf="cartEmpty">
-        <p>your cart is empty :(</p>
-</div>
+<div class="container">
+    <h1>Your Cart 🛒</h1>
 
+    <div class="row">
 
-<div *ngFor="let product of products"> 
-    <h3>{{ product.name }}</h3>
-    <img src="{{ product.url }}" alt="Image of {{ product.name }}" width="100px" [routerLink]="['/product-details', product.id]"/>
-    <p>${{ product.price }}</p>
-    <input type="number" value="{{ cartOrder.products.get(product) }}" id="amtFor{{ product.id }}" (change)="updateTotalPrice()">
+        <div class="col">
 
-</div>
-
-    <h2>Subtotal: ${{ this.subtotal }} </h2>
-    <h2>Estimated Tax: ${{ this.tax }} </h2>
-    <h2>Shipping: $5.00</h2>
-    <h2>Total: ${{ this.total }}</h2>
+            <div *ngIf="cartEmpty" class="jumbotron">
+                    <p class="empty-cart display-4">Your cart is empty</p>
+                    <p class="lead">Head over to <a routerLink="/">products</a> to start shopping! </p>
+            </div>
 
 
-<div *ngIf="!cartEmpty">
-    <h1>Check Out</h1>
-    <form #form="ngForm" (ngSubmit)="submitOrder()">
-        <label>Name:</label> <br>
-        <input type="text" name="name" required minlength="2" placeholder="" id="name" [(ngModel)]="this.cartOrder.name"> <br>
-        <label>Shipping Address:</label> <br>
-        <input type="text" name="address" required minlength="3" placeholder="" [(ngModel)]="address"> <br>
-        <label>Credit Card Number</label> <br>
-        <input type="text" name="creditcard" requried minlength="6" placeholder="" [(ngModel)]="ccn"> <br>
-        <p>We will never share your info with anyone.</p> <br>
-        <input type="submit" [disabled]="form.invalid" value="Confirm and Place Order"> <br>
-    </form>
+            <div *ngFor="let product of products" class="card"> 
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{{ product.url }}" class="card-img" alt="Image of {{ product.name }}" width="100px" [routerLink]="['/product-details', product.id]"/>
+                    </div>
+                    <div class="col-8 card-body">
+                        <h3 class="card-title">{{ product.name }}</h3>
+                        <p class="card-text">${{ product.price }}</p>
+                        <input type="number" class="amt-input" value="{{ cartOrder.products.get(product) }}" id="amtFor{{ product.id }}" (change)="updateTotalPrice()">
+                    </div>
+
+                </div>
+                
+                
+            </div>
+
+            <div *ngIf="!cartEmpty" class="jumbotron cart-info">
+                <h4>Subtotal: ${{ this.subtotal }} </h4>
+                <h4>Estimated Tax: ${{ this.tax }} </h4>
+                <h4>Shipping: $5.00</h4>
+                <hr class="my-4">
+                <h3>Total: ${{ this.total }}</h3>
+            </div>
+            
+
+        </div>
+
+
+        <div *ngIf="!cartEmpty" class="col">
+            <h1>Check Out</h1>
+            <form #form="ngForm" (ngSubmit)="submitOrder()" class="form-horizontal">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label" >Name:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="name" class="form-control" required minlength="2" placeholder="" id="name" [(ngModel)]="this.cartOrder.name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-4 col-form-label">Shipping Address:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="address" class="form-control" required minlength="3" placeholder="" [(ngModel)]="address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                <label for="creditcard" class="col-sm-4 col-form-label">Credit Card Number: </label>
+                <div class="col-sm-8">
+                    <input type="text" name="creditcard" class="form-control" requried minlength="6" placeholder="" [(ngModel)]="ccn">
+                    <p class="form-text text-muted">We will never share your personal info with anyone.</p> <br>
+                </div>
+                </div>
+                <button type="submit" class="btn btn-primary form-control" [disabled]="form.invalid">Confirm and Place Order</button>
+            </form>
+        </div>
+    </div>
+
 </div>

@@ -28,15 +28,14 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     let order = this.orderService.orders.find(o => o.id == 1);
     if (order != undefined) {
-      this.cartEmpty = false;
       this.cartOrder = order;
     }
     this.products = [ ...this.cartOrder.products.keys() ];
+    this.cartEmpty = this.products.length == 0;
 
     this.subtotal = Math.round(this.findTotalPrice() * 100)/100;
     this.tax = Math.round(this.subtotal * 0.08 * 100)/100;
-    this.total = Math.round(this.subtotal + this.tax + 5.00 * 100)/100;
-
+    this.total = Math.round((this.subtotal + this.tax + 5.00) * 100)/100
   }
   
 
@@ -63,7 +62,8 @@ export class CartComponent implements OnInit {
     }
     this.subtotal = Math.round(sum * 100)/100;
     this.tax = Math.round(this.subtotal * 0.08 * 100)/100;
-    this.total = Math.round(this.subtotal + this.tax + 5.00 * 100)/100;
+    this.total = Math.round((this.subtotal + this.tax + 5.00) * 100)/100
+    console.log(this.total)
   }
 
   removeProduct(product: Product): void {
@@ -72,6 +72,9 @@ export class CartComponent implements OnInit {
     // remove from order
     this.cartOrder.products.delete(product)
     alert("Removed from Cart")
+    if (this.products.length == 0) {
+      this.router.navigateByUrl('/')
+    }
   }
 
   submitOrder(): void {

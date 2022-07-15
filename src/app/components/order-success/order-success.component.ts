@@ -12,7 +12,6 @@ export class OrderSuccessComponent implements OnInit {
 
   cartOrder: Order = new Order;
 
-
   constructor(private orderService: OrderService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

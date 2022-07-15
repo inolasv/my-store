@@ -1,0 +1,45 @@
+
+
+.form-group {
+    padding: 1em;
+}
+
+img {
+    border-radius: 1.5em;
+}
+
+
+.container {
+    padding: 3em;
+}
+
+
+.jumbotron {
+    background-color: #e2ebf3;
+    padding: 2em;
+    margin: 3em;
+}
+
+.cart-info {
+    text-align: right;
+}
+
+.card-body {
+    text-align: right;
+    padding-top: 2em;
+    padding-right: 3em;
+}
+
+.card {
+    width: 30em;
+    margin: 2em;
+    border-radius: 1.5em;
+
+}
+
+.amt-input {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    width: 10em;
+}

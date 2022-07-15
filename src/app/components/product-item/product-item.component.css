@@ -1,0 +1,19 @@
+
+
+.card {
+    width: 18em;
+    margin: 2em;
+    padding: 1em;
+    border-radius: 1.5em;
+
+}
+
+
+select {
+    margin-right: 0.4em;
+}
+
+img {
+    border-radius: 1.5em;
+}
+
