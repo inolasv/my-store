@@ -29,7 +29,11 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => { 
       this.id = Number(params.get('id'));
-      this.product = this.productService.getProducts().find(p => p.id == this.id) as Product
+      this.productService.getProducts().subscribe(res => {
+        this.product = res.find(p => p.id == this.id) as Product
+      });
+      
+      
     });
   }
 
