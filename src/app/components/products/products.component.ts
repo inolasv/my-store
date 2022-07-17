@@ -12,6 +12,9 @@ export class ProductsComponent implements OnInit {
   title: string = "Products";
   product_list: Product[] = []
 
+  showAlert: boolean = false;
+  itemAdded: string = "";
+
   constructor(private product_service: ProductService) { }
 
   ngOnInit(): void {
@@ -20,6 +23,15 @@ export class ProductsComponent implements OnInit {
       this.product_list = res;
     });
 
+  }
+
+  addToCart(product: Product): Product {
+    this.itemAdded = product.name;
+    this.showAlert = true;
+    console.log(product.name)
+    window.scrollTo(0, 0);
+
+    return product;
   }
 
 }

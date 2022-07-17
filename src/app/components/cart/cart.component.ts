@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Order } from 'src/app/models/Order';
 import { Product } from 'src/app/models/Product';
 import { OrderService } from 'src/app/services/order.service';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  
+
   cartOrder: Order = new Order;
   products: Product[] = [];
   cartEmpty: boolean = true;
@@ -22,6 +22,9 @@ export class CartComponent implements OnInit {
 
   address: string = "";
   ccn: string = "";
+
+  validForm: boolean = true;
+  showalert: boolean = false;
 
   constructor(private orderService: OrderService, private router: Router) { }
 
@@ -37,7 +40,6 @@ export class CartComponent implements OnInit {
     this.tax = Math.round(this.subtotal * 0.08 * 100)/100;
     this.total = Math.round((this.subtotal + this.tax + 5.00) * 100)/100
   }
-  
 
   findTotalPrice(): number {
     let sum = 0;
@@ -63,7 +65,6 @@ export class CartComponent implements OnInit {
     this.subtotal = Math.round(sum * 100)/100;
     this.tax = Math.round(this.subtotal * 0.08 * 100)/100;
     this.total = Math.round((this.subtotal + this.tax + 5.00) * 100)/100
-    console.log(this.total)
   }
 
   removeProduct(product: Product): void {
@@ -77,9 +78,29 @@ export class CartComponent implements OnInit {
     }
   }
 
+  checkValidform(): boolean {
+    var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
+    console.log(this.ccn)
+
+    if(isNaN(Number(this.ccn))) {
+      this.validForm = false;
+      return false;
+    }
+
+    if(!form.checkValidity()){
+      this.validForm = false;
+      return false;
+    }
+    this.validForm = true;
+    this.showalert = true;
+    return true;
+  }
+
   submitOrder(): void {
-    this.cartOrder.totalCost = this.total;
-    this.router.navigateByUrl('/order-success/1')
+    if(this.checkValidform()) {
+      this.cartOrder.totalCost = this.total;
+      this.router.navigateByUrl('/order-success/1')
+    }
   }
 
 }

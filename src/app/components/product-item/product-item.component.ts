@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -10,6 +10,8 @@ import { OrderService } from 'src/app/services/order.service';
 export class ProductItemComponent implements OnInit {
 
   @Input() product: Product;
+
+  @Output() addedToCart: EventEmitter<Product> = new EventEmitter;
     
   constructor(private orderService: OrderService) {
 
@@ -34,7 +36,7 @@ export class ProductItemComponent implements OnInit {
     // have a service that does this? or a order component?
     let inputNum = Number((<HTMLInputElement>document.getElementById(`amtFor${this.product.id}`)).value);
     this.orderService.addToOrder(1, this.product, inputNum);
-    alert(`Added to cart!`);
+    this.addedToCart.emit(this.product)
   }
 
 }

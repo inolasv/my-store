@@ -3,3 +3,8 @@
 .title {
     padding: 1em;
 }
+
+.alert {
+    margin-top: 2em;
+    padding: 1.6%;
+}

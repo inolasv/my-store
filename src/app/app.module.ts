@@ -13,6 +13,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
 
@@ -24,7 +25,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     NavBarComponent,
     CartComponent,
     OrderSuccessComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

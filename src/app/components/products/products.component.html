@@ -3,9 +3,12 @@
 
 
 <div class="container">
+    <div *ngIf="showAlert" class="alert alert-info alert-dismissable fade show"> 
+        Added {{ itemAdded }} to Cart.
+    </div>
     <h1 class="title">Products</h1>
     <div class="row">
-        <app-product-item *ngFor="let product of product_list" [product]="product" class="col-sm-4"></app-product-item>
+        <app-product-item *ngFor="let product of product_list" [product]="product" class="col-sm-4" (addedToCart)="addToCart($event)"></app-product-item>
     </div>
+    
 </div>
-
